@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nossa História ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: black ;
+        color: white;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .stars {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background:
+            radial-gradient(2px 2px at 20% 30%, white, transparent),
+            radial-gradient(2px 2px at 70% 40%, white, transparent),
+            radial-gradient(1px 1px at 50% 80%, white, transparent),
+            radial-gradient(2px 2px at 80% 20%, white, transparent),
+            radial-gradient(1px 1px at 30% 70%, white, transparent);
+        animation: twinkle 4s infinite alternate;
+        z-index: -1;
+    }
+
+    @keyframes twinkle {
+        from { opacity: 0.5; }
+        to { opacity: 1; }
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 30px;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+        max-width: 750px;
+        line-height: 1.8;
+    }
+
+    button {
+        margin-top: 30px;
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+
+    .botoes-pedido{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.btn-sim,
+.btn-nao{
+    padding: 18px 35px;
+    border: none;
+    border-radius: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-sim{
+    background: #ff4d88;
+    color: white;
+}
+
+.btn-sim:hover{
+    transform: scale(1.1);
+}
+
+.btn-nao{
+    background: rgba(255,255,255,0.15);
+    color: white;
+}
+
+.btn-nao:hover{
+    transform: scale(1.05);
+}
+
+    #contador {
+        margin-top: 20px;
+    }
+
+    .carrossel{
+    position: relative;
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+.slide{
+    width: 100%;
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.45);
+
+    display: block;
+}
+
+.btn-lateral{
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 55px;
+    height: 55px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0,0,0,0.45);
+
+    backdrop-filter: blur(8px);
+
+    color: white;
+    font-size: 28px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.btn-lateral:hover{
+    background: rgba(255,255,255,0.25);
+
+    transform:
+        translateY(-50%)
+        scale(1.1);
+
+    box-shadow:
+        0 0 20px rgba(255,255,255,0.25);
+}
+
+.esquerda{
+    left: 15px;
+}
+
+.direita{
+    right: 15px;
+}
+.controles{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.btn-carrossel{
+    width: 60px;
+    height: 60px;
+
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.btn-carrossel:hover{
+    transform: translateY(-4px) scale(1.08);
+
+    background: rgba(255,255,255,0.22);
+
+    box-shadow:
+        0 8px 25px rgba(255,255,255,0.15);
+}
+
+.btn-carrossel:active{
+    transform: scale(0.95);
+}
+
+.coracao{
+    position: fixed;
+    top: -50px;
+    font-size: 30px;
+    animation: cair 5s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes cair{
+    to{
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.indicador {
+    margin-top: 15px;
+    font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+    <div id="capitulo">
+
+        <h1>✨ Nossa História ✨</h1>
+
+        <p>
+            Existem encontros que parecem coincidência.
+            Outros parecem resposta de oração.
+            O nosso sempre me pareceu obra de Deus.
+        </p>
+
+        <button onclick="proximoCapitulo()">
+            Começar ❤️
+        </button>
+
+        <div id="contador"></div>
+
+    </div>
+</div>
+
+<audio id="musica" src="musica.mp3"></audio>
+
+<script>
+
+const capitulos = [
+
+{
+titulo: "O Primeiro Olhar",
+texto: "Tudo começou quando eu estava pregando em um encontro. Enquanto falava, meus olhos encontraram os seus. Você estava sentada na primeira fileira, e eu não imaginava que aquela menina se tornaria uma das maiores bênçãos da minha vida."
+},
+
+{
+titulo: "O Pastel 📸",
+texto: "No mesmo dia, tivemos nossa primeira conversa. Eu estava vendendo bingos quando vi você tirando foto de um pastel. Então resolvi brincar: quem tira foto de pastel? Talvez você não saiba, mas aquela conversa simples ficou gravada na minha memória."
+},
+
+{
+titulo: "Nosso Primeiro Encontro ⛪",
+texto: "Depois, eu te chamei para ir à igreja. Em determinado momento, vi você deitada no ombro de uma amiga. E um pensamento atravessou meu coração: 'Como eu gostaria que um dia ela pudesse descansar no meu ombro.' Hoje, esse desejo se tornou realidade."
+},
+
+{
+titulo: "A Festa do Leite ❤️",
+texto: "Chegou então a quinta-feira no camarote da Festa do Leite. Foi ali que aconteceu o nosso primeiro beijo. Um momento que eu jamais esquecerei. E quando chegou a hora de ir embora, você não queria que eu fosse embora. Talvez naquele instante nós dois já soubéssemos que havia algo muito especial nascendo."
+},
+
+{
+    titulo: "Nossas Memórias 📷",
+    texto: "Cada foto guarda uma lembrança. Algumas me fazem rir, outras me emocionam. Mas todas me lembram o quanto sou grato por ter você na minha vida.",
+    fotos: [
+        "fotos/foto1.jpg",
+        "fotos/foto2.jpg",
+        "fotos/foto3.jpg",
+        "fotos/foto4.jpg",
+        "fotos/foto5.jpg",
+        "fotos/foto6.jpg",
+        "fotos/foto7.jpg",
+        "fotos/foto8.jpg",
+        "fotos/foto9.jpg",
+        "fotos/foto10.jpg",
+        "fotos/foto11.jpg",
+        "fotos/foto12.jpg",
+        "fotos/foto13.jpg",
+        "fotos/foto14.jpg",
+        "fotos/foto15.jpg",
+        "fotos/foto16.jpg"
+    ]
+},
+
+{
+titulo: "O Hoje",
+texto: "Hoje, quando olho para trás, vejo o cuidado de Deus em cada detalhe. Desde a primeira fileira, passando pelo pastel, pelo primeiro encontro e pelo camarote. Tudo isso construiu a história mais bonita que eu poderia viver."
+},
+
+{
+titulo: "O Amanhã ⭐",
+texto: "E quando penso no futuro, imagino novas memórias, novas risadas, novas orações, novas conquistas e muitos capítulos escritos ao seu lado."
+},
+
+{
+titulo: "O Que Eu Preciso Te Dizer...",
+texto: "Obrigado por existir. Obrigado por ter entrado na minha vida. Obrigado por tornar meus dias mais leves e meu coração mais feliz."
+},
+
+{
+titulo: "❤️",
+texto: "Se Deus escreveu capítulos tão lindos até aqui... você permite que eu te faça a mulher mais feliz do mundo? (durante todos os próximos anos, quermesses, bingos e novenas, até ficar velhinha?)",
+pedido: true
+}
+
+];
+
+let indice = 0;
+
+function proximoCapitulo() {
+
+    if(indice < capitulos.length){
+
+        document.getElementById("capitulo").innerHTML = `
+            <h1>${capitulos[indice].titulo}</h1>
+
+            <p>${capitulos[indice].texto}</p>
+
+            <button onclick="proximoCapitulo()">
+                ${indice === capitulos.length - 1 ? "❤️" : "Continuar"}
+            </button>
+        `;
+
+        indice++;
+
+    } else {
+
+        document.getElementById("capitulo").innerHTML = `
+            <h1>✨ Eu Escolho Você ✨</h1>
+
+            <p>
+                Entre todas as possibilidades da vida,
+                eu escolheria encontrar você novamente.
+                E novamente.
+                E novamente.
+            </p>
+
+            <p>
+                Porque amar você é uma das decisões mais bonitas que já tomei.
+            </p>
+
+            <h2>
+                Eu te amo. ❤️
+            </h2>
+        `;
+    }
+}
+
+// Coloque aqui a data oficial do namoro
+const inicio = new Date("2026-00-00");
+
+if(!isNaN(inicio)){
+    const hoje = new Date();
+
+    const dias = Math.floor(
+        (hoje - inicio) / (1000 * 60 * 60 * 24)
+    );
+
+    if(dias > 0){
+        document.getElementById("contador").innerHTML =
+        `Estamos escrevendo essa história há <strong>${dias} dias</strong>.`;
+    }
+}
+let fotosAtuais = [];
+let fotoAtual = 0;
+function proximoCapitulo() {
+
+    if(indice < capitulos.length){
+
+        const capituloAtual = capitulos[indice];
+
+        let conteudoExtra = "";
+
+        if(capituloAtual.fotos){
+
+            conteudoExtra = `
+                <div class="carrossel">
+
+    <button class="btn-lateral esquerda"
+            onclick="fotoAnterior()">
+        ❮
+    </button>
+
+    <img id="slide"
+         class="slide"
+         src="${capituloAtual.fotos[0]}">
+
+    <button class="btn-lateral direita"
+            onclick="proximaFoto()">
+        ❯
+    </button>
+
+    <div class="indicador">
+        <span id="contadorFotos">
+            1 / ${capituloAtual.fotos.length}
+        </span>
+    </div>
+
+</div>
+            `;
+
+            fotosAtuais = capituloAtual.fotos;
+            fotoAtual = 0;
+        }
+
+        if(capituloAtual.pedido){
+
+    document.getElementById("capitulo").innerHTML = `
+        <h1>${capituloAtual.titulo}</h1>
+
+        <p>${capituloAtual.texto}</p>
+
+        <div class="botoes-pedido">
+            <button class="btn-sim"
+                    onclick="aceitou()">
+                SIM ❤️
+            </button>
+
+            <button class="btn-nao"
+                    onclick="brincadeira()">
+                Não 😅
+            </button>
+        </div>
+    `;
+
+    indice++;
+    return;
+}
+
+        document.getElementById("capitulo").innerHTML = `
+            <h1>${capituloAtual.titulo}</h1>
+
+            <p>${capituloAtual.texto}</p>
+
+            ${conteudoExtra}
+
+            <button onclick="proximoCapitulo()">
+                ${indice === capitulos.length - 1
+                    ? "❤️"
+                    : "Continuar"}
+            </button>
+        `;
+
+        indice++;
+
+    } else {
+
+        // Seu final continua igual
+    }
+}
+function aceitou(){
+
+    chuvaDeCoracoes();
+
+    document.getElementById("capitulo").innerHTML = `
+        <h1>✨ ELA DISSE SIM! ✨</h1>
+
+        <p>
+            Obrigado por escolher viver essa aventura ao meu lado.
+            Prometo continuar escolhendo você todos os dias.
+        </p>
+
+        <h2>
+            Eu te amo infinitamente ❤️
+        </h2>
+    `;
+
+    document.getElementById("musica").play();
+}
+
+function chuvaDeCoracoes(){
+
+    for(let i = 0; i < 60; i++){
+
+        setTimeout(() => {
+
+            const coracao = document.createElement("div");
+
+            coracao.className = "coracao";
+
+            coracao.innerHTML = "❤️";
+
+            coracao.style.left =
+                Math.random() * 100 + "vw";
+
+            coracao.style.fontSize =
+                (20 + Math.random() * 30) + "px";
+
+            document.body.appendChild(coracao);
+
+            setTimeout(() => {
+                coracao.remove();
+            }, 5000);
+
+        }, i * 100);
+    }
+}
+
+function proximaFoto(){
+
+    if(fotosAtuais.length === 0) return;
+
+    fotoAtual++;
+
+    if(fotoAtual >= fotosAtuais.length){
+        fotoAtual = 0;
+    }
+
+    atualizarFoto();
+}
+
+function fotoAnterior(){
+
+    if(fotosAtuais.length === 0) return;
+
+    fotoAtual--;
+
+    if(fotoAtual < 0){
+        fotoAtual = fotosAtuais.length - 1;
+    }
+
+    atualizarFoto();
+}
+
+function atualizarFoto(){
+
+    document.getElementById("slide").src =
+        fotosAtuais[fotoAtual];
+
+    document.getElementById("contadorFotos").textContent =
+        `${fotoAtual + 1} / ${fotosAtuais.length}`;
+}
+</script>
+
+</body>
+</html>
